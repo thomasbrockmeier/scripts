@@ -1,0 +1,17 @@
+#!/bin/bash
+
+DIRS=`ls -l ~/.dotfiles/ | egrep '^d' | awk '{print $9}'`
+FILE=`ls -l ~/.dotfiles/ | egrep -v ^d | awk '{print $9}'`
+MESG=`date +"%Y/%m/%d-%H:%M:%S %Z"`
+
+for dir in $DIRS; do
+    cp -R ~/.config/${dir} ~/.dotfiles/
+done
+
+for file in $FILE; do
+    cp -R ~/.config/${file} ~/.dotfiles/${file}
+done
+
+git -C ~/.dotfiles/ add .
+git -C ~/.dotfiles commit -m "${MESG}"
+git -C ~/.dotfiles/ push
