@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Script to update ~/.dotfiles with content from corresponding directories
+# present in ~/.config
+
 DIRS=`ls -l ~/.dotfiles/ | egrep '^d' | awk '{print $9}'`
 FILE=`ls -l ~/.dotfiles/ | egrep -v ^d | awk '{print $9}'`
 MESG=`date +"%Y/%m/%d-%H:%M:%S %Z"`
